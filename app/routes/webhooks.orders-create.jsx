@@ -1,4 +1,3 @@
-import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 import prisma from "../db.server";
 
@@ -12,12 +11,6 @@ export const action = async ({ request }) => {
     // --- Add this line to log the payload ---
     console.log("Webhook Payload:", JSON.stringify(payload, null, 2));
     // --- End of added line ---
-
-    // --- Alternatively, for a less formatted but sometimes useful view: ---
-    // console.log("Webhook Payload Object:", payload);
-    // --- Or for potentially deeper inspection in Node environments: ---
-    // console.dir(payload, { depth: null });
-    // ---
 
     if (topic !== "ORDERS_CREATE") {
       console.warn(`Received unexpected webhook topic: ${topic}`);
